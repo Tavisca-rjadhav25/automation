@@ -3,14 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.gutenberg.qa.testcases.ProjectDetailsTest">
+      <class name="com.gutenberg.qa.testcases.HomePageTest">
         <methods>
+          <include name="verifySearch"/>
           <include name="setup"/>
-          <include name="verifyCreateProjectButtonIsClickable"/>
-          <include name="verifyCancelButtonIsClickable"/>
-          <include name="verifySiteGetAddSuccessfully"/>
+          <include name="verifyProjectIsDeleted"/>
+          <include name="verifyClickOnListView"/>
+          <include name="verifySearchIconIsClickable"/>
         </methods>
-      </class> <!-- com.gutenberg.qa.testcases.ProjectDetailsTest -->
+      </class> <!-- com.gutenberg.qa.testcases.HomePageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

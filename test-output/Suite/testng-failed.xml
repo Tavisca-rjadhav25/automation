@@ -3,10 +3,24 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.gutenberg.qa.testcases.HomePageTest">
+      <class name="gutenberg.automation.AppTest">
+        <methods>
+          <include name="testApp"/>
+        </methods>
+      </class> <!-- gutenberg.automation.AppTest -->
+      <class name="com.gutenberg.qa.testcases.ProjectDetailsTest">
         <methods>
           <include name="setup"/>
-          <include name="verifyAddNewSiteButtonIsClickable"/>
+          <include name="verifyCreateProjectButtonIsClickable"/>
+          <include name="verifyCancelButtonIsClickable"/>
+          <include name="verifySiteGetAddSuccessfully"/>
+        </methods>
+      </class> <!-- com.gutenberg.qa.testcases.ProjectDetailsTest -->
+      <class name="com.gutenberg.qa.testcases.HomePageTest">
+        <methods>
+          <include name="verifyCategoryGetAdded"/>
+          <include name="setup"/>
+          <include name="verifyAddCategoryButtonIsClickable"/>
         </methods>
       </class> <!-- com.gutenberg.qa.testcases.HomePageTest -->
     </classes>

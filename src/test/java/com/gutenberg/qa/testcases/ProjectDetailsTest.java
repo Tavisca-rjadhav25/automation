@@ -3,6 +3,7 @@ package com.gutenberg.qa.testcases;
 import java.io.IOException;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -29,8 +30,8 @@ public class ProjectDetailsTest extends base{
 		
 		 //Launch the Gutenberg Website
 		driver.get(prop.getProperty("URL"));
-		pd= new ProjectDetails();
 		hp= new HomePage();
+		pd= new ProjectDetails();
 		hp.addUsername();
 		hp.addPass();
 		hp.clickSubmit();
@@ -39,13 +40,11 @@ public class ProjectDetailsTest extends base{
 	@Test(priority = 1)
 	// Verify create project button is clickable
 	public void verifyCreateProjectButtonIsClickable() {
-		HomePage hp = new HomePage();
-		
 		hp.clickOnAddProjectButton();
 	}
 
 	@Test(priority = 2)
-	// Add new site
+	// Add new category
 	public void verifySiteGetAddSuccessfully() {
 		
 		//add image
@@ -54,6 +53,8 @@ public class ProjectDetailsTest extends base{
 		
 		// Insert project name
 		pd.addpickName();
+		
+		//pd.selectCategory();
 		
 		pd.clickMetaData();
 		
@@ -69,26 +70,48 @@ public class ProjectDetailsTest extends base{
 
 		// click on Create Project Button
 		pd.clickOnCreateButton();
-
-		//Assert.assertTrue(gm.isElementDisplayed(HomePage.successMessage));
+		
+		Assert.assertTrue(hp.getElement(hp.header).contains("GUTENBERG"));
+	
 	}
 	
 	
 	@Test(priority = 3)
 	//To verify cancel button is clickable
-	public void verifyCancelButtonIsClickable() throws IOException {
-		ProjectDetails pd = new ProjectDetails();
+	public void verifyCancelButtonIsClickable() {
 		hp.clickOnAddProjectButton();
 		pd.clickOnCancelButton();
+		Assert.assertTrue(hp.getElement(hp.header).contains("GUTENBERG"));
 	}
 	
-	/*@Test(priority = 3)
-	//To verify browse create is clickable
-	public void verifyCreateButtonIsClickable() throws IOException {
-		ProjectDetails pd = new ProjectDetails();
+	@Test(priority = 4)
+	//Add new project without image, meta-description, meta-tags
+	public void verifySiteGetAddSuccessfullyWithoutDescription() {
 		
-		pd.clickOnCreateButton();
-	}*/
-	
+		//click on add project button
+		hp.clickOnAddProjectButton();
+				
+		// Insert project name
+		pd.addpickName();
+				
+		
+		// scroll page down
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
+				
+		// click on Create Project Button
+		pd.clickOnCreateButton();
+		
+		Assert.assertTrue(hp.getElement(hp.header).contains("GUTENBERG"));
+	}
+	
+	@Test(priority = 5)
+	//To verify back navigation button is clickable
+	public void goToHomePage() {
+		hp.clickOnAddProjectButton();
+		pd.clickOnBackButton();
+		Assert.assertTrue(hp.getElement(hp.header).contains("GUTENBERG"));
+	}
+	
+	
 }
